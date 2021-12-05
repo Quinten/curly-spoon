@@ -1,6 +1,6 @@
 export default {
     system: {
-        states: ['game', 'test']
+        states: ['game', 'level']
     },
     game: {
         state: {
@@ -11,54 +11,30 @@ export default {
         resize: {
             width: 300,
             height: 150,
-            minWidth: 256,
-            minHeight: 256
+            minWidth: 288,
+            minHeight: 288
         }
     },
     input: {
         pointer: {}
     },
-    player: {
-        fillrect: {
-            fill: 'white',
-            x: 8,
-            y: 8,
-            width: 240,
-            height: 240,
-            next: ['game', 'testx']
-        },
-        sound: {
-            melody: ['8G3', '8D3', '4C3']
-        },
-        data: {
-            nClicks: 0
+    map: {
+        grid: {
+            width: 6,
+            tileSize: 48,
+            nodes: [
+                0, 0, 0, 0, 0, 0,
+                0, 1, 0, 0, 1, 0,
+                0, 1, 1, 0, 1, 0,
+                0, 0, 1, 0, 0, 0,
+                0, 0, 1, 0, 1, 1,
+                0, 0, 0, 0, 0, 0
+            ]
         }
     },
-    enemy: {
-        fillrect: {
-            fill: 'lightblue',
-            x: 8,
-            y: 8,
-            width: 240,
-            height: 240,
-            next: ['game', 'test']
-        },
-        sound: {
-            melody: ['8C3', '8D3', '8G3+8'],
-            play: true
-        },
-        data: {
-            nClicks: 0
-        }
-    },
-    test: {
+    level: {
         state: {
-            entities: ['player']
-        }
-    },
-    testx: {
-        state: {
-            entities: ['enemy']
+            entities: ['map']
         }
     }
 };
