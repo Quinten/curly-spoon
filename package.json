@@ -1,5 +1,5 @@
 {
-  "name": "mini-web-game",
+  "name": "curly-spoon",
   "scripts": {
     "start": "echo PROJECT_NAME=$npm_package_name > .env; parcel --dist-dir ./public",
     "build": "echo PROJECT_NAME=$npm_package_name > .env; rm -rf public; parcel build",

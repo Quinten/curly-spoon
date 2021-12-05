@@ -1,4 +1,4 @@
-# mini-web-game
+# curly-spoon
 
 A mini web game generated from this [template](https://github.com/Quinten/mini-web-game).
 
