@@ -30,9 +30,14 @@ export default {
             ]
         }
     },
+    spoon: {
+        pathfinder: {
+            grid: 'map'
+        }
+    },
     level: {
         state: {
-            entities: ['map']
+            entities: ['map', 'spoon']
         }
     }
 };

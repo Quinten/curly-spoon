@@ -4,6 +4,8 @@ let draw = c => {
     ctx.fillStyle = '#fff';
     let offsetX = (c.entities.viewport.resize.width - c.entities.viewport.resize.minWidth) / 2;
     let offsetY = (c.entities.viewport.resize.height - c.entities.viewport.resize.minHeight) / 2;
+    c.component.x = offsetX;
+    c.component.y = offsetY;
     nodes.forEach((node, index) => {
         let x = index % width;
         let y = index / width | 0;

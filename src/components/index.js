@@ -4,6 +4,7 @@ import resize from './resize.js';
 import sound from './sound.js';
 import fillrect from './fillrect.js';
 import grid from './grid.js';
+import pathfinder from './pathfinder.js';
 
 export default Object.freeze({
     data,
@@ -11,5 +12,6 @@ export default Object.freeze({
     resize,
     sound,
     fillrect,
-    grid
+    grid,
+    pathfinder
 });
