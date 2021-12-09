@@ -79,12 +79,13 @@ let update = c => {
                     ay = ay + 1
                 ) {
                     let child = nodes[ax + ay * width];
-                    let cornerA = nodes[ax + py * width];
-                    let cornerB = nodes[px + ay * width];
+                    //let cornerA = nodes[ax + py * width];
+                    //let cornerB = nodes[px + ay * width];
                     if (
                         child.w === 1 ||
-                        cornerA.w === 1 ||
-                        cornerB.w === 1 ||
+                        //cornerA.w === 1 ||
+                        //cornerB.w === 1 ||
+                        (ax !== px && ay !== py) ||
                         closedList.indexOf(child) > -1
                     ) {
                         continue;
