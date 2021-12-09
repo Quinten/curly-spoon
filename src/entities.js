@@ -33,7 +33,9 @@ export default {
     spoon: {
         pathfinder: {
             grid: 'map',
-            startNode: 30
+            startNode: 30,
+            endNode: 30,
+            path: [30]
         }
     },
     level: {
