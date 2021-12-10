@@ -21,6 +21,13 @@ let draw = c => {
     });
 };
 
+let neighbours = [
+    {x: 0, y: -1},
+    {x: -1, y: 0},
+    {x: 1, y: 0},
+    {x: 0, y: 1}
+];
+
 let update = c => {
     let {pointer} = c.entities.input;
     if (!pointer.justUp) {
@@ -68,52 +75,41 @@ let update = c => {
             }
             let px = (currentNode.p % width);
             let py = (currentNode.p / width) | 0;
-            for (
-                let ax = Math.max(0, px - 1);
-                ax <= Math.min(px + 1, width - 1);
-                ax = ax + 1
-            ) {
-                for (
-                    let ay = Math.max(0, py - 1);
-                    ay <= Math.min(py + 1, height - 1);
-                    ay = ay + 1
+            for (let r = 0; r < neighbours.length; r = r + 1) {
+                let ax = px + neighbours[r].x;
+                if (ax < 0 || ax >= width) {
+                    continue;
+                }
+                let ay = py + neighbours[r].y;
+                if (ay < 0 || ay >= height) {
+                    continue;
+                }
+                let child = nodes[ax + ay * width];
+                if (
+                    child.w === 1 ||
+                    closedList.indexOf(child) > -1
                 ) {
-                    let child = nodes[ax + ay * width];
-                    //let cornerA = nodes[ax + py * width];
-                    //let cornerB = nodes[px + ay * width];
-                    if (
-                        child.w === 1 ||
-                        //cornerA.w === 1 ||
-                        //cornerB.w === 1 ||
-                        (ax !== px && ay !== py) ||
-                        closedList.indexOf(child) > -1
-                    ) {
-                        continue;
-                    }
-                    let cost = Math.sqrt(
-                        (ax - px) * (ax - px) +
-                        (ay - py) * (ay - py)
-                    );
-                    let g = currentNode.g + cost;
-                    let h = Math.sqrt(
-                        (ax - ex) * (ax - ex) +
-                        (ay - ey) * (ay - ey)
-                    );
-                    let f = child.g + child.h;
-                    if (openList.indexOf(child) > -1) {
-                        if (child.f > f) {
-                            child.f = f;
-                            child.g = g;
-                            child.h = h;
-                            child.parent = currentNode;
-                        }
-                    } else {
+                    continue;
+                }
+                let g = currentNode.g + 1;
+                let h = Math.sqrt(
+                    (ax - ex) * (ax - ex) +
+                    (ay - ey) * (ay - ey)
+                );
+                let f = child.g + child.h;
+                if (openList.indexOf(child) > -1) {
+                    if (child.f > f) {
                         child.f = f;
                         child.g = g;
                         child.h = h;
                         child.parent = currentNode;
-                        openList.push(child);
                     }
+                } else {
+                    child.f = f;
+                    child.g = g;
+                    child.h = h;
+                    child.parent = currentNode;
+                    openList.push(child);
                 }
             }
         }
